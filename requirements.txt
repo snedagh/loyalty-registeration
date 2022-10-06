@@ -3,3 +3,5 @@ pymysql
 pillow
 fontawesomefree
 django-bootstrap4
+mysqlclient
+requests
