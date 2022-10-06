@@ -6,6 +6,7 @@
         <div class="container p-0 h-100">
             <form method="post" enctype="multipart/form-data" action="{% url 'reg-cust' %}" class="row no-gutters">
                 {% csrf_token %}
+                <input type="hidden" name="created_by" value="{{ request.user.pk }}">
                 <div class="col-sm-6 d-flex fle-wrap align-content-center justify-content-center">
                     <div class="card w-100">
                         <div class="card-header d-flex flex-wrap justify-content-between align-content-center">
