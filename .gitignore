@@ -1,0 +1,5 @@
+/venv/
+/loyalty/home/migrations/
+/loyalty/register/migrations/
+/loyalty/static/customers/
+/loyalty/user/migrations/

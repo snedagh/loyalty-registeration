@@ -1,0 +1,193 @@
+{% extends 'general/base.html' %}
+
+{% block body %}
+
+    <div style="height: 100vh; overflow: auto" class="w-100 h-100 overflow-auto bg-dark">
+        <div class="container p-0 h-100">
+            <form method="post" enctype="multipart/form-data" action="{% url 'reg-cust' %}" class="row no-gutters">
+                {% csrf_token %}
+                <div class="col-sm-6 d-flex fle-wrap align-content-center justify-content-center">
+                    <div class="card w-100">
+                        <div class="card-header d-flex flex-wrap justify-content-between align-content-center">
+                            <strong class="card-title">Register Customer</strong>
+                            <a href="{% url 'home' %}" class="btn btn-info">CANCEL</a>
+                        </div>
+                        <input type="hidden" id="otp_url" value="{% url 'otp' %}">
+                        <div class="card-body overflow-auto">
+                            <div class="w-100">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <!-- FIRST NAME -->
+                                        <div class="col-sm-6">
+                                            <label class="w-100">First Name <span class="text-danger">*</span>
+                                                <input id="first_name" autocomplete="off" required type="text" name="first_name" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+
+                                        <!-- LAST NAME -->
+                                        <div class="col-sm-6">
+                                            <label class="w-100">Last Name <span class="text-danger">*</span>
+                                                <input id="last_name" autocomplete="off" required type="text" name="last_name" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <!-- GENDER -->
+                                        <div class="col-sm-6">
+                                            <label for="gender">Gender</label>
+                                            <select name="gender" id="gender" class="form-control form-control-sm">
+                                                <option value="F">Female</option>
+                                                <option value="M">Male</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- NATION -->
+                                        <div class="col-sm-6">
+                                            <label for="nationality">Nationality</label>
+                                            <select name="nationality" id="nationality" class="form-control form-control-sm">
+                                                <option value="GHA">Ghanaian</option>
+                                                <option value="IND">Indian</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="w-100">Email <span class="text-danger">*</span>
+                                                <input id="email" autocomplete="off" required type="email" value="none@domain.com" name="email" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="w-100">Phone <span class="text-danger">*</span>
+                                                <input autocomplete="off"  type="tel" required value="" name="mobile" id="phone" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label class="w-100">ID Type <span class="text-danger">*</span>
+                                                <select name="id_type" id="id_type" class="form-control form-control-sm">
+                                                    <option value="GHCARD">Ghana Card</option>
+                                                    <option value="NHIS">NHIS</option>
+                                                    <option value="DRLIC">Drivers License</option>
+                                                    <option value="OTH">Others</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="w-100">ID Number <span class="text-danger">*</span>
+                                                <input autocomplete="off" required type="text" value="" name="id_number" id="id_number" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="w-100">Date Of Borth <span class="text-danger">*</span>
+                                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label class="w-100">Card Number <span class="text-danger">*</span>
+                                                <input type="text" name="card_no" id="card_no" class="form-control form-control-sm">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input required name="card_img" type="file" accept="image/*" class="custom-file-input" id="card_img">
+                                                <label class="custom-file-label" for="card_img">CARD IMAGE</label>
+                                            </div>
+                                            <div class="w-100 mx-auto mt-2">
+                                                <img src="" id="card_prev" alt="" class="img-fluid">
+                                                <script>
+                                                    card_img.onchange = evt => {
+                                                      const [file] = card_img.files
+                                                      if (file) {
+                                                        card_prev.src = URL.createObjectURL(file)
+                                                      }
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input required name="id_front" type="file" accept="image/*" class="custom-file-input" id="idFront">
+                                                <label class="custom-file-label" for="idFront">ID FRONT</label>
+                                            </div>
+                                            <div class="w-100 mx-auto mt-2">
+                                                <img src="" id="idfprev" alt="" class="img-fluid">
+                                                <script>
+                                                    idFront.onchange = evt => {
+                                                      const [file] = idFront.files
+                                                      if (file) {
+                                                        idfprev.src = URL.createObjectURL(file)
+                                                      }
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input name="id_back" required type="file" accept="image/*" class="custom-file-input" id="idBack">
+                                                <label class="custom-file-label" for="idBack">ID BACK</label>
+                                            </div>
+                                            <div class="w-100 mx-auto mt-2">
+                                                <img src="" id="idbprev" alt="" class="img-fluid">
+                                                <script>
+                                                    idBack.onchange = evt => {
+                                                      const [file] = idBack.files
+                                                      if (file) {
+                                                        idbprev.src = URL.createObjectURL(file)
+                                                      }
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div id="auth_box" class="w-100 d-flex flex-wrap justify-content-between">
+                                <button type="button" onclick="validate_new()" class="btn btn-info w-100">VALIDATE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+

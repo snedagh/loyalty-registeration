@@ -1,0 +1,5 @@
+django
+pymysql
+pillow
+fontawesomefree
+django-bootstrap4

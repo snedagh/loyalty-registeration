@@ -1,0 +1,54 @@
+{% extends 'general/base.html' %}
+
+{% block body %}
+
+    <div class="w-100 h-100 bg-dark">
+        <div class="container h-100">
+            <div class="row h-100 no-gutters d-flex flex-wrap align-content-center justify-content-center">
+                <div class="col-sm-5">
+                    <div class="w-100 card p-2">
+                        <div class="text-center">
+                            <h4>Loyalty Registeration</h4>
+                        </div>
+                        <hr>
+
+                        <form method="post" id="" action="{% url 'user-auth' %}"  class="card-body">
+                            <input type="hidden" name="next" value="{{ next }}">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" autocomplete="off" placeholder="Username" name="username" required class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                </div>
+                                <input type="password" autocomplete="off" placeholder="Password" name="password" required class="form-control">
+                            </div>
+                            <button class="w-100 btn btn-success rounded-0">LOGIN</button>
+                        </form>
+
+                        {% if messages %}
+                    {% for message in messages %}
+
+                        <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error!</strong> {{ message }}
+                      </div>
+
+                    {% endfor %}
+                {% endif %}
+
+<!--                        <div class="card-footer">-->
+<!--                            <button onclick="$('#general_form').submit()" class="w-100 btn btn-success">LOGIN</button>-->
+<!--                        </div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
