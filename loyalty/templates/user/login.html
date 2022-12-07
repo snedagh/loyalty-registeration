@@ -31,15 +31,15 @@
                         </form>
 
                         {% if messages %}
-                    {% for message in messages %}
+                            {% for message in messages %}
 
-                        <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Error!</strong> {{ message }}
-                      </div>
+                                <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Error!</strong> {{ message }}
+                              </div>
 
-                    {% endfor %}
-                {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
 <!--                        <div class="card-footer">-->
 <!--                            <button onclick="$('#general_form').submit()" class="w-100 btn btn-success">LOGIN</button>-->
